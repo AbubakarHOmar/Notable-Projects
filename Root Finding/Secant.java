@@ -1,49 +1,20 @@
-import java.util.Arrays;
+
 
 /*
- * PROJECT II: Secant.java
- *
- * This file contains a template for the class Secant. Not all methods are
- * implemented. Make sure you have carefully read the project formulation
- * before starting to work on this file.
- *
- * In this class, you will create a basic Java object responsible for
+ * In this class, I create a basic Java object responsible for
  * performing the Secant root finding method on a given polynomial
- * f(z) with complex co-efficients. The formulation outlines the method, as
- * well as the basic class structure, details of the instance variables and
- * how the class should operate.
- *
- * Remember not to change the names, parameters or return types of any
- * variables in this file! You should also test this class using the main()
- * function.
- *
- * The function of the methods and instance variables are outlined in the
- * comments directly above them.
- * 
- * Tasks:
- *
- * 1) Complete this class with the indicated methods and instance variables.
- *
- * 2) Fill in the following fields:
- *
- * NAME: Abubakar Omar
- * UNIVERSITY ID: 2125047
- * DEPARTMENT: Mathematics
+ * f(z) with complex co-efficients.
  */
 
 public class Secant {
     /**
      * The maximum number of iterations that should be used when applying
-     * Secant. Ensure this is *small* (e.g. at most 50) otherwise your
-     * program may appear to freeze.
+     * Secant.
      */
     public static final int MAXITER = 20;
 
     /**
-     * The tolerance that should be used throughout this project. Note that
-     * you should reference this variable and _not_ explicity write out
-     * 1.0e-10 in your solution code. Other classes can access this tolerance
-     * by using Secant.TOL.
+     * The tolerance that should be used throughout this project.
      */
     public static final double TOL = 1.0e-10;
 
@@ -87,7 +58,7 @@ public class Secant {
      * @param p  The polynomial used for Secant.
      */
     public Secant(Polynomial p) {
-        // You need to fill in this method.
+        
         this.f = p;
         this.root = new Complex();
     }
@@ -100,7 +71,7 @@ public class Secant {
      * Returns the current value of the err instance variable.
      */
     public Error getError() {
-        // You need to fill in this method with the correct code.
+        
         return err;
     }
 
@@ -108,7 +79,7 @@ public class Secant {
      * Returns the current value of the numIterations instance variable.
      */
     public int getNumIterations() { 
-        // You need to fill in this method with the correct code.
+        
         return this.numIterations;
     }
     
@@ -116,7 +87,7 @@ public class Secant {
      * Returns the current value of the root instance variable.
      */
     public Complex getRoot() {
-        // You need to fill in this method with the correct code.
+        
         return new Complex(this.root.getReal(), this.root.getImag());
     }
 
@@ -124,12 +95,12 @@ public class Secant {
      * Returns the polynomial associated with this object.
      */
     public Polynomial getF() {
-        // You need to fill in this method with the correct code.
+        
         return new Polynomial(this.f.getCoeff());
     }
 
     // ========================================================
-    // Secant method (check the comment)
+    // Secant method
     // ========================================================
     
     /**
@@ -138,18 +109,18 @@ public class Secant {
      *
      * One of three things may occur:
      *
-     *   - The root is found, in which case, set root to the end result of the
+     *   - The root is found, in which case, I set root to the end result of the
      *     algorithm, numIterations to the number of iterations required to
      *     reach it and err to 0.
      *   - At some point the absolute difference between f(zn) and f(zn-1) becomes zero. 
-     *     In this case, set err to -1 and return.
+     *     In this case, I set err to -1 and return.
      *   - After MAXITER iterations the algorithm has not converged. In this 
-     *     case set err to -2 and return.
+     *     case I set err to -2 and return.
      *
      * @param z0,z1  The initial starting points for the algorithm.
      */
     public void iterate(Complex z0, Complex z1) {
-        // You need to fill in this method.
+        
         for (int i = 1; i <= MAXITER; i++) {
             Complex z2 = z1.add(f.evaluate(z1).multiply(z1.add(z0.negate()).divide(f.evaluate(z1).add(f.evaluate(z0).negate()))).negate());
 

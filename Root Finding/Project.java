@@ -1,48 +1,10 @@
-/*
- * PROJECT II: Project2.java
- *
- * This file contains a template for the class Project2. Not all methods
- * are implemented. Make sure you have carefully read the project formulation
- * before starting to work on this file.
- *
- * There are a lot of functions in this class, as it deals with creating an
- * image using purely Java. I have already completed a lot of the technical
- * aspects for you, so there should not be a huge amount for you to do in this
- * class! 
- *
- * At the bottom of this class there is a section of functions which I have
- * already written and deal with the more complicated tasks. You should make
- * sure that you read through the function descriptions, but DO NOT ALTER
- * THEM! Also, remember to call the setupFractal() function from your
- * constructor!
- *
- * Remember not to change the names, parameters or return types of any
- * variables in this file! You should also test this class using the main()
- * function.
- *
- * The function of the methods and instance variables are outlined in the
- * comments directly above them.
- * 
- * Tasks:
- *
- * 1) Complete this class with the indicated methods and instance variables.
- *
- * 2) Fill in the following fields:
- *
- * NAME: Abubakar Omar
- * UNIVERSITY ID: 2125047
- * DEPARTMENT: Mathematics
- */
-
-// These next lines import the relevant classes needed to output an image and
-// *SHOULD NOT* be changed. You do not need to worry about their definitions.
 import java.io.*;
 import java.awt.image.*;
 import java.awt.*;
 import javax.imageio.ImageIO;
 import java.util.ArrayList;
 
-public class Project2 {
+public class Project {
     /**
      * A reference to the Secant iterator object.
      */
@@ -74,19 +36,8 @@ public class Project2 {
      */
     private boolean colourIterations;
 
-    /**
-     * A standard Java object which allows us to store a simple image in
-     * memory. This will be set up by setupFractal -- you do not need to worry
-     * about it!
-     */
     private BufferedImage fractal;
     
-    /**
-     * This object is another standard Java object which allows us to perform
-     * basic graphical operations (drawing lines, rectangles, pixels, etc) on
-     * the BufferedImage. This will be set up by setupFractal -- you do not
-     * need to worry about it!
-     */
     private Graphics2D g2;
 
     /**
@@ -101,15 +52,14 @@ public class Project2 {
     
     /**
      * Constructor function which initialises the instance variables
-     * above. IMPORTANT: Remember to call setupFractal at the end of this
-     * function!!
+     * above.
      *
      * @param p       The polynomial to generate the fractal of.
      * @param origin  The top-left corner of the square to image.
      * @param width   The width of the square to image.
      */
-    public Project2(Polynomial p, Complex origin, double width) {
-        // You need to fill in this function with the correct code.
+    public Project(Polynomial p, Complex origin, double width) {
+        
         this.iterator = new Secant(p);
         this.origin = origin;
         this.width = width;
@@ -126,7 +76,7 @@ public class Project2 {
      * roots ArrayList.
      */
     public void printRoots() {
-        // You need to fill in this function.
+        
         for (Complex c: roots){
             System.out.println(c.toString());
         }
@@ -137,7 +87,7 @@ public class Project2 {
      * @return an ArrayList of roots for the polynomial
      */
     public ArrayList<Complex> getRoots() {
-        // This method is complete.
+        
         return this.roots;
     }
     
@@ -148,7 +98,7 @@ public class Project2 {
      * @return The index of root within roots (-1 if the root is not found)
      */
     public int index(Complex root) {
-        // You need to fill in this function.
+        
         for (Complex c: roots){
             if ((c.add(root.negate())).abs() < Secant.TOL){
                 return roots.indexOf(c);
@@ -166,7 +116,7 @@ public class Project2 {
      * 
      */
     public Complex pixelToComplex(int i, int j) {
-        // You need to fill in this function.
+        
         double dz = this.width / NUMPIXELS;
         return new Complex(origin.getReal() + i*dz, origin.getImag() - j*dz);
     }
@@ -176,11 +126,10 @@ public class Project2 {
     // ========================================================
 
     /**
-     * Generate the fractal image.  Use colourPixel() to add coloured pixels
-     * to the image for this fractal.
+     * Generates the fractal image.
      */
     public void createFractal(boolean colourIterations) {
-        // You need to fill in this function.
+        
         this.colourIterations = colourIterations;
         for (int i = 0; i < NUMPIXELS ; i++) {
             for (int j = 0; j < NUMPIXELS ; j++) {
@@ -201,37 +150,23 @@ public class Project2 {
     // ========================================================
     
     public static void main(String[] args) {
-        // Here is some example code which generates the two images seen in
-        // figure 1 of the formulation.
         Complex[] coeff = new Complex[] { new Complex(-1.0,0.0), new Complex(), new Complex(), new Complex(), new Complex(18.0,0.0) };
         Polynomial p    = new Polynomial(coeff);
-        Project2 project = new Project2(p, new Complex(-1.0,1.0), 2.0);
+        Project project = new Project(p, new Complex(-1.0,1.0), 2.0);
         
-        // The following lines of code will raise Exceptions initially
-        // because the createFractal and the constructor are incomplete
+
         project.createFractal(false);
         project.saveFractal("fractal-light.png");
         project.createFractal(true);
         project.saveFractal("fractal-dark.png");
     }
     
-    // ====================================================================
-    // OTHER FUNCTIONS
-    //
-    // The rest of the functions in this class are COMPLETE (with the
-    // exception of the main function) since they involve quite complex Java
-    // code to deal with the graphics. This means they *do not* and *should
-    // not* need to be altered! But you should read their descriptions so you
-    // know how to use them.
-    // ====================================================================
-    
-    /**
-     * Sets up all the fractal image. Make sure that your constructor calls
-     * this function!
+    /*
+     * Sets up all the fractal image.
      */
     private void setupFractal()
     {
-        // This function is complete!
+        
         int i, j;
 
         if (iterator.getF().degree() < 3 || iterator.getF().degree() > 5)
@@ -273,7 +208,7 @@ public class Project2 {
      * @param numIter    Number of iterations at this root.
      */
     private void colourPixel(int i, int j, int rootColour, int numIter) {
-        // This function is complete!
+        
         if (colourIterations)
             g2.setColor(colours[rootColour][numIter-1]);
         else
@@ -287,7 +222,7 @@ public class Project2 {
      * @param fileName  The filename to save the image as. Should end in .png.
      */
     public void saveFractal(String fileName) {
-        // This function is complete!
+        
         try {
             File outputfile = new File(fileName);
             ImageIO.write(fractal, "png", outputfile);
