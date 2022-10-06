@@ -146,7 +146,6 @@ public class Secant {
     // ========================================================
     
     public static void main(String[] args) {
-        // Basic tester: find a root of f(z) = z^3-1.
         Complex[] coeff = new Complex[] { new Complex(-1.0,0.0), new Complex(), new Complex(), new Complex(1.0,0.0) };
         Polynomial p    = new Polynomial(coeff);
         Secant     s    = new Secant(p);

@@ -1,27 +1,4 @@
-/*
- * PROJECT III: TriMatrix.java
- *
- * This file contains a template for the class TriMatrix. Not all methods are
- * implemented and they do not have placeholder return statements. Make sure 
- * you have carefully read the project formulation before starting to work 
- * on this file. You will also need to have completed the Matrix class.
- *
- * Remember not to change the names, parameters or return types of any
- * variables in this file!
- *
- * The function of the methods and instance variables are outlined in the
- * comments directly above them.
- * 
- * Tasks:
- *
- * 1) Complete this class with the indicated methods and instance variables.
- *
- * 2) Fill in the following fields:
- *
- * NAME: Abubakar Omar
- * UNIVERSITY ID: 2125047
- * DEPARTMENT: Mathematics
- */
+// This file contains a template for the class TriMatrix. 
 import java.util.SplittableRandom;
 
 public class TriMatrix extends Matrix {
@@ -47,7 +24,7 @@ public class TriMatrix extends Matrix {
      * @param dimension  The dimension of the array.
      */
     public TriMatrix(int dimension) {
-        // You need to fill in this method.
+        
         super(dimension, dimension);
         diagonal = new double[iDim];
         upperDiagonal = new double[iDim - 1];
@@ -63,7 +40,7 @@ public class TriMatrix extends Matrix {
      * @return   The (i,j)'th entry of the matrix.
      */
     public double getIJ(int i, int j) {
-        // You need to fill in this method.
+        
         if ((i < 0 || i >= iDim) || (j < 0 || j >= iDim)) {
             throw new MatrixException("Entry doesn't exist!");
         }
@@ -89,7 +66,7 @@ public class TriMatrix extends Matrix {
      * @param value  The value to set the (i,j)'th entry to.
      */
     public void setIJ(int i, int j, double value) {
-        // You need to fill in this method.
+        
         if ((i < 0 || i >= iDim) || (j < 0 || j >= iDim)) {
             throw new MatrixException("Entry doesn't exist!");
         }
@@ -113,7 +90,7 @@ public class TriMatrix extends Matrix {
      * @return The determinant of the matrix.
      */
     public double determinant() {
-        // You need to fill in this method.
+        
         double det = 1.0;
         TriMatrix LU = LUdecomp();
         for (int i = 0; i < LU.iDim; i++) {
@@ -123,13 +100,12 @@ public class TriMatrix extends Matrix {
     }
     
     /**
-     * Returns the LU decomposition of this matrix. See the formulation for a
-     * more detailed description.
+     * Returns the LU decomposition of this matrix.
      * 
      * @return The LU decomposition of this matrix.
      */
     public TriMatrix LUdecomp() {
-        // You need to fill in this method.
+        
         TriMatrix LU = new TriMatrix(iDim);
         LU.diagonal[0] = diagonal[0];
         LU.lowerDiagonal[0] = 0;
@@ -148,7 +124,7 @@ public class TriMatrix extends Matrix {
      * @return        The sum of this matrix with the second matrix.
      */
     public Matrix add(Matrix second) {
-        // You need to fill in this method.
+        
         if (iDim != second.iDim || jDim != second.jDim) {
             throw new MatrixException("The two Matrices don't have the same dimension!");
         }
@@ -169,7 +145,7 @@ public class TriMatrix extends Matrix {
      * @return   The product of this matrix with the matrix A.
      */
     public Matrix multiply(Matrix A) {
-        // You need to fill in this method.
+        
         if (jDim != A.iDim) { 
             throw new MatrixException("Columns of B don't equal rows of A!");
         }
@@ -191,7 +167,7 @@ public class TriMatrix extends Matrix {
      * @return        The product of this matrix with the scalar.
      */
     public Matrix multiply(double scalar) {
-        // You need to fill in this method.
+        
         GeneralMatrix ret = new GeneralMatrix(iDim, jDim);
         for (int i = 0; i < iDim; i++) {
             for (int j = 0; j < jDim; j++) {
@@ -207,7 +183,7 @@ public class TriMatrix extends Matrix {
      * distributed between 0 and 1.
      */
     public void random() {
-        // You need to fill in this method.
+        
         SplittableRandom rand = new SplittableRandom();
         diagonal[0] = rand.nextDouble();
         for (int i = 1; i < iDim; i++) {
@@ -217,11 +193,11 @@ public class TriMatrix extends Matrix {
         }
     }
     
-    /*
-     * Your tester function should go here.
-     */
+
+    // Tester function
+
     public static void main(String[] args) {
-        //Test your class implementation using this method.
+
         TriMatrix A = new TriMatrix(3);
         TriMatrix B = new TriMatrix(3);
 

@@ -63,7 +63,7 @@ public class Polynomial {
 
     /**
      * Create a string representation of the polynomial.
-     * Use z to represent the variable. I included terms
+     * Use z to represent the variable, including terms
      * with zero co-efficients up to the degree of the
      * polynomial.
      *

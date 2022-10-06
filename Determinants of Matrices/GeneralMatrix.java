@@ -1,27 +1,6 @@
-/*
- * PROJECT III: GeneralMatrix.java
- *
- * This file contains a template for the class GeneralMatrix. Not all methods
- * implemented and they do not have placeholder return statements. Make sure 
- * you have carefully read the project formulation before starting to work 
- * on this file. You will also need to have completed the Matrix class.
- *
- * Remember not to change the names, parameters or return types of any
- * variables in this file!
- *
- * The function of the methods and instance variables are outlined in the
- * comments directly above them.
- * 
- * Tasks:
- *
- * 1) Complete this class with the indicated methods and instance variables.
- *
- * 2) Fill in the following fields:
- *
- * NAME: Abubakar Omar
- * UNIVERSITY ID: 2125047   
- * DEPARTMENT: Mathematics
- */
+//This file contains a template for the class GeneralMatrix.
+ 
+
 import java.util.SplittableRandom;
 
 public class GeneralMatrix extends Matrix {
@@ -38,7 +17,7 @@ public class GeneralMatrix extends Matrix {
      * @param secondDim  The second dimension of the array.
      */
     public GeneralMatrix(int firstDim, int secondDim) {
-        // You need to fill in this method.
+        
         super(firstDim, secondDim);
         this.values = new double[iDim][jDim];
     }
@@ -50,7 +29,7 @@ public class GeneralMatrix extends Matrix {
      * @param second  The matrix to create a copy of.
      */
     public GeneralMatrix(GeneralMatrix second) {
-        // You need to fill in this method.
+        
         super(second.iDim, second.jDim);
         this.values = new double[iDim][jDim];
         for (int i = 0; i < second.iDim; i++) {
@@ -68,7 +47,7 @@ public class GeneralMatrix extends Matrix {
      * @return   The (i,j)'th entry of the matrix.
      */
     public double getIJ(int i, int j) {
-        // You need to fill in this method.
+        
         if ((i < 0 || i >= values.length) || (j < 0 || j >= values[i].length)) {
             throw new MatrixException("Entry doesn't exist!");
         }
@@ -79,14 +58,14 @@ public class GeneralMatrix extends Matrix {
     }
     
     /**
-     * Setter function: set the (i,j)'th entry of the values array.
+     * Setter function: sets the (i,j)'th entry of the values array.
      *
      * @param i      The location in the first co-ordinate.
      * @param j      The location in the second co-ordinate.
      * @param value  The value to set the (i,j)'th entry to.
      */
     public void setIJ(int i, int j, double value) {
-        // You need to fill in this method.
+        
         if ((i < 0 || i >= values.length) || (j < 0 || j >= values[i].length)) {
             throw new MatrixException("Entry doesn't exist!");
         }
@@ -101,7 +80,7 @@ public class GeneralMatrix extends Matrix {
      * @return The determinant of the matrix.
      */
     public double determinant() {
-        // You need to fill in this method
+        
         double[] sign = new double[1];
         try {
             GeneralMatrix LU = LUdecomp(sign);
@@ -132,7 +111,7 @@ public class GeneralMatrix extends Matrix {
      * @return   The sum of this matrix with the second matrix.
      */
     public Matrix add(Matrix second) {
-        // You need to fill in this method.
+        
         if (iDim != second.iDim || jDim != second.jDim) {
             throw new MatrixException("The two Matrices don't have the same dimension!");
         }
@@ -153,7 +132,7 @@ public class GeneralMatrix extends Matrix {
      * @return   The product of this matrix with the matrix A.
      */
     public Matrix multiply(Matrix A) {
-        // You need to fill in this method.
+        
         if (jDim != A.iDim) { 
             throw new MatrixException("Columns of B don't equal rows of A!");
         }
@@ -176,7 +155,7 @@ public class GeneralMatrix extends Matrix {
      * @return        The product of this matrix with the scalar.
      */
     public Matrix multiply(double scalar) {
-        // You need to fill in this method.
+        
         GeneralMatrix ret = new GeneralMatrix(iDim, jDim);
         for (int i = 0; i < iDim; i++) {
             for (int j = 0; j < jDim; j++) {
@@ -191,7 +170,7 @@ public class GeneralMatrix extends Matrix {
      * distributed between 0 and 1.
      */
     public void random() {
-        // You need to fill in this method.
+        
         SplittableRandom rand = new SplittableRandom();
         for (int i = 0; i < iDim; i++) {
             for (int j = 0; j < jDim; j++) {
@@ -221,10 +200,10 @@ public class GeneralMatrix extends Matrix {
      * "singular"
      *
      * This method is an adaptation of the one found in the book "Numerical
-     * Recipies in C" (see online for more details).
+     * Recipies in C"
      * 
      * @param sign  An array of length 1. On exit, the value contained in here
-     *              will either be 1 or -1, which you can use to calculate the
+     *              will either be 1 or -1, which can be used to calculate the
      *              correct sign on the determinant.
      * @return      The LU decomposition of the matrix.
      */
@@ -291,11 +270,10 @@ public GeneralMatrix LUdecomp(double[] sign) {
         return a;
     }
 
-    /*
-     * Your tester function should go here.
-     */
+    
+    //Tester function
+     
     public static void main(String[] args) {
-        // Test your class implementation using this method.
         GeneralMatrix A = new GeneralMatrix(2, 2);
         GeneralMatrix B = new GeneralMatrix(2, 2);
 

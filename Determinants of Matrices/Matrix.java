@@ -1,31 +1,4 @@
-/*
- * PROJECT III: Matrix.java
- *
- * This file contains a template for the class Matrix. Not all methods are
- * implemented and they do not have placeholder return statements. Make sure 
- * you have carefully read the project formulation before starting to work 
- * on this file.
- *
- * Some of the methods here are abstract. That means that they must be
- * implemented by their subclasses. If you're not sure about abstract classes,
- * you should consult the lecture notes for more information.
- *
- * Remember not to change the names, parameters or return types of any
- * variables in this file!
- *
- * The function of the methods and instance variables are outlined in the
- * comments directly above them.
- * 
- * Tasks:
- *
- * 1) Complete this class with the indicated methods and instance variables.
- *
- * 2) Fill in the following fields:
- *
- * NAME: Abubakar Omar
- * UNIVERSITY ID: 2125047
- * DEPARTMENT: Mathematics
- */
+//This file contains a template for the class Matrix.
 
 public abstract class Matrix {
     /**
@@ -35,9 +8,6 @@ public abstract class Matrix {
     protected int jDim;
 
     /**
-     * Constructor function. This is protected since abstract classes cannot
-     * be instantiated anyway. Subclasses should call this function from their
-     * constructors to set iDim and jDim.
      *
      * @param firstDim  The first dimension of the matrix.
      * @param secondDim  The second dimension of the matrix.
@@ -50,10 +20,7 @@ public abstract class Matrix {
     
     /**
      * Returns a String representation of the Matrix using the getIJ getter
-     * function. You should use String.format() to format the double numbers to a
-     * sensible number of decimal places and place the numbers in columns.
-     * Remember: %n at the end of each row in the string will insert a 
-     * newline character.
+     * function.
      * 
      * e.g.
      *  -2.00   0.00   0.00
@@ -63,7 +30,7 @@ public abstract class Matrix {
      * @return A String representation of the Matrix.
      */
     public String toString() {
-        // You need to fill in this method.
+        
         String ret = "";
         for (int i = 0; i < iDim; i++) {
             for (int j = 0; j < jDim; j++) {
